@@ -1,5 +1,4 @@
 numpy
 pandas
 matplotlib
-sklearn.cluster
-csv
+-U scikit-learn
