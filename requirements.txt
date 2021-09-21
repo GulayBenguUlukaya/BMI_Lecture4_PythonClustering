@@ -1,0 +1,6 @@
+copy
+numpy
+pandas
+matplotlib
+sklearn.cluster
+csv
