@@ -1,10 +1,10 @@
 # Import necessary libraries
 import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-from matplotlib import pyplot as plt
+import pandas as pd # data processing
+from matplotlib import pyplot as plt #plotting figures
 
 df = pd.read_csv("./dataset/Iris.csv") #load the dataset
-x = df.iloc[:, [1, 2, 3, 4]].values
+x = df.iloc[:, [1, 2, 3, 4]].values #drop categorical values
 
 #Finding the optimum number of clusters for k-means classification
 from sklearn.cluster import KMeans
@@ -17,7 +17,7 @@ for i in range(1, 11):
     
 fig=plt.figure()
 
-#Plotting the results onto a line graph, allowing us to observe 'The elbow'
+#Plotting the results onto a line graph, observe 'the elbow'
 plt.plot(range(1, 11), wcss)
 plt.title('Elbow Plot')
 plt.xlabel('Number of clusters')
@@ -30,9 +30,6 @@ plt.savefig('./output/iris_kmeans3_elbowplot.png', dpi=300, bbox_inches='tight')
 kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 y_kmeans = kmeans.fit_predict(x)
 
-
-
-
 fig=plt.figure()
 
 #Visualising the clusters
@@ -40,7 +37,7 @@ plt.scatter(x[y_kmeans == 0, 0], x[y_kmeans == 0, 1], s = 30, c = 'orange', labe
 plt.scatter(x[y_kmeans == 1, 0], x[y_kmeans == 1, 1], s = 30, c = 'blue', label = 'Iris-versicolour')
 plt.scatter(x[y_kmeans == 2, 0], x[y_kmeans == 2, 1], s = 30, c = 'green', label = 'Iris-virginica')
 
-#Plotting the centroids of the clusters
+#Plotting the centers of the clusters
 plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:,1], s = 100, c = 'red', label = 'Cluster Centers',marker='*')
 
 plt.legend()
