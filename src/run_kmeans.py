@@ -30,12 +30,13 @@ plt.savefig('./output/iris_kmeans3_elbowplot.png', dpi=300, bbox_inches='tight')
 kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 y_kmeans = kmeans.fit_predict(x)
 
+
 fig=plt.figure()
 
-#Visualising the clusters
-plt.scatter(x[y_kmeans == 0, 0], x[y_kmeans == 0, 1], s = 30, c = 'orange', label = 'Iris-setosa')
-plt.scatter(x[y_kmeans == 1, 0], x[y_kmeans == 1, 1], s = 30, c = 'blue', label = 'Iris-versicolour')
-plt.scatter(x[y_kmeans == 2, 0], x[y_kmeans == 2, 1], s = 30, c = 'green', label = 'Iris-virginica')
+#Visualizing the clusters
+plt.scatter(x[y_kmeans == 0, 0], x[y_kmeans == 0, 1], s = 30, c = 'orange', label = 'K Means Cluster 0')
+plt.scatter(x[y_kmeans == 1, 0], x[y_kmeans == 1, 1], s = 30, c = 'blue', label = 'K Means Cluster 1')
+plt.scatter(x[y_kmeans == 2, 0], x[y_kmeans == 2, 1], s = 30, c = 'green', label = 'K Means Cluster 2')
 
 #Plotting the centers of the clusters
 plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:,1], s = 100, c = 'red', label = 'Cluster Centers',marker='*')
@@ -43,11 +44,39 @@ plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:,1], s = 100
 plt.legend()
 
 plt.draw()
-plt.savefig('./output/iris_kmeans3_predictions.png', dpi=300, bbox_inches='tight')
+plt.savefig('./output/iris_kmeans3_clusters.png', dpi=300, bbox_inches='tight')
+
+actual = df["Species"].tolist() #Convert actual species to list
+
+#Assign species to generated clusters, create predicted species list to compare with actual 
+pred = ['Iris-setosa' if (i==1) else 'Iris-versicolor' if (i==0)  else 'Iris-virginica' if (i==2) else i for i in y_kmeans] 
+
+from sklearn.metrics import confusion_matrix
+#Calculate confusion matric between actual species and predicted by k-means clustering
+cm = confusion_matrix(actual, pred)
+
+import seaborn as sns; sns.set()
+
+x_axis_labels = ['Iris-setosa','Iris-versicolor','Iris-virginica'] # labels for x-axis
+y_axis_labels = ['K Means Cluster 1','K Means Cluster 0','K Means Cluster 2'] # labels for y-axis
+
+#Plot confusion matrix
+fig=plt.figure()
+
+ax = sns.heatmap(cm, annot=True, fmt="d", cmap="Reds", xticklabels=x_axis_labels, yticklabels=y_axis_labels)
+
+plt.draw()
+plt.savefig('./output/iris_kmeans3_confusionMatrix.png', dpi=300, bbox_inches='tight')
 
 import csv
-
+#Output k-means-predicted species
 with open('./output/iris_kmeans3_predictions.csv', 'w') as f:
     writer = csv.writer(f)
-    for val in y_kmeans:
+    for val in pred:
         writer.writerow([val])
+
+#Calculate accuracy of k-means clustering results and output
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(actual, pred, normalize=True, sample_weight=None)
+        
+print("K Means Clustering applied to Iris dataset with "+str(acc)+" accuracy of predicting species.")
