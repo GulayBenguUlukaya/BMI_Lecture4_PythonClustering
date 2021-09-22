@@ -8,9 +8,13 @@ Version: 0.0.1
 Instructions
 ------------
 $ git clone https://github.com/GulayBenguUlukaya/BMI_Lecture4_PythonClustering.git
+
 $ cd BMI_Lecture4_PythonClustering
+
 $ pip install -r requirements.txt
+
 $ cd src
+
 $ python run_kmeans.py
 
 Memory Usage While Running Package :  71068128  bytes
@@ -43,4 +47,5 @@ For Iris.csv:
   
 For run_kmeans.py:
   Khotijah, S (2020). K-Means Clustering of Iris Dataset. https://www.kaggle.com/khotijahs1/k-means-clustering-of-iris-dataset.
+  
   Shintotheruvil (2016). K- means clustering. https://www.kaggle.com/shinto/k-means-clustering.
