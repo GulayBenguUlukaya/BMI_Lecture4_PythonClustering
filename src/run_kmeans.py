@@ -17,7 +17,7 @@ for i in range(1, 11):
     
 fig=plt.figure()
 
-#Plotting the results onto a line graph, observe 'the elbow'
+#Plotting the results onto a line graph, allowing us to observe 'The elbow'
 plt.plot(range(1, 11), wcss)
 plt.title('Elbow Plot')
 plt.xlabel('Number of clusters')
@@ -29,7 +29,6 @@ plt.savefig('./output/iris_kmeans3_elbowplot.png', dpi=300, bbox_inches='tight')
 #Applying kmeans to the dataset / Creating the kmeans classifier
 kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 y_kmeans = kmeans.fit_predict(x)
-
 
 fig=plt.figure()
 
