@@ -1,3 +1,8 @@
+import guppy
+from guppy import hpy
+heap = hpy()
+heap_status1 = heap.heap()
+
 # Import necessary libraries
 import numpy as np # linear algebra
 import pandas as pd # data processing
@@ -79,3 +84,6 @@ from sklearn.metrics import accuracy_score
 acc = accuracy_score(actual, pred, normalize=True, sample_weight=None)
         
 print("K Means Clustering applied to Iris dataset with "+str(acc)+" accuracy of predicting species.")
+heap_status2 = heap.heap()
+
+print("\nMemory Usage After Creation Of Objects : ", heap_status2.size - heap_status1.size, " bytes")
