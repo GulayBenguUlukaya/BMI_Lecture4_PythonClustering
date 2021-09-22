@@ -2,6 +2,7 @@
 K Means Clustering with Python using publicly available iris dataset.
 
 Author: Gulay Bengu Ulukaya
+
 Version: 0.0.1
 
 Memory Allocation to Running Package:
@@ -14,6 +15,7 @@ References:
 ----------
 For Iris.csv:
   https://www.kaggle.com/uciml/iris
+  
 For run_kmeans.py:
   https://www.kaggle.com/shinto/k-means-clustering
   https://www.kaggle.com/khotijahs1/k-means-clustering-of-iris-dataset
