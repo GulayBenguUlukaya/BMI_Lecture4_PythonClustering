@@ -1,7 +1,7 @@
-import guppy
-from guppy import hpy
-heap = hpy()
-heap_status1 = heap.heap()
+#import guppy
+#from guppy import hpy
+#heap = hpy()
+#heap_status1 = heap.heap()
 
 # Import necessary libraries
 import numpy as np # linear algebra
@@ -31,9 +31,12 @@ plt.ylabel('Within cluster sum of squares')
 plt.draw()
 plt.savefig('./output/iris_kmeans3_elbowplot.png', dpi=300, bbox_inches='tight')
 
+###Time model training
+#%%time
 #Applying kmeans to the dataset / Creating the kmeans classifier
 kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 y_kmeans = kmeans.fit_predict(x)
+#Wall time: 20.9 ms
 
 fig=plt.figure()
 
@@ -84,6 +87,6 @@ from sklearn.metrics import accuracy_score
 acc = accuracy_score(actual, pred, normalize=True, sample_weight=None)
         
 print("K Means Clustering applied to Iris dataset with "+str(acc)+" accuracy of predicting species.")
-heap_status2 = heap.heap()
-
-print("\nMemory Usage After Creation Of Objects : ", heap_status2.size - heap_status1.size, " bytes")
+#heap_status2 = heap.heap()
+#print("\nMemory Usage After Creation Of Objects : ", heap_status2.size - heap_status1.size, " bytes")
+#Memory Usage After Creation Of Objects :  71068128  bytes
