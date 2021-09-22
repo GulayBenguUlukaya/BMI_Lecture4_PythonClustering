@@ -1,3 +1,11 @@
-figure 1
-figure 2
-csv
+iris_kmeans3_elbowplot.png
+To determine the optimal number of clusters, we have to select the value of k at "the elbow" which is the point after the inertia start decreasing linearly. For the given Iris data, we conclude that the optimal number of clusters for the data is 3.
+
+iris_kmeans3_clusters.png
+Scatter plot of clustered data points for k=3
+
+iris_kmeans3_confusionMatrix.png
+Confusion matrix of clustered data points for k=3
+
+iris_kmeans3_predictions.csv
+1 column with predicted species 
